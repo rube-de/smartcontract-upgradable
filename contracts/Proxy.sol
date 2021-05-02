@@ -14,11 +14,13 @@ contract Proxy is Storage{
         currentAddress = _newAddress;
     }
 
+    //Fallback function
     function() payable external{
         address implementation = currentAddress;
         require(currentAddress != address(0));
         bytes memory data = msg.data;
 
+        // Delegatecall every function calll
         assembly {
             let result := delegatecall(gas, implementation, add(data, 0x20), mload(data), 0 ,0)
             let size := returndatasize
