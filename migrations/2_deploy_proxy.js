@@ -32,6 +32,8 @@ module.exports = async function(deployer, network, accounts){
 
     //Set number of the cats through proxy with the new updated contract
     await proxyCats.setNumberOfCats(30);
+    //test with different account
+    //await proxyCats.setNumberOfCats(30, {from: accounts[1]});
 
     //Check if storage changed
     nrOfCats = await proxyCats.getNumberOfCats();
