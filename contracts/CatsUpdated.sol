@@ -10,7 +10,13 @@ contract CatsUpdated is Storage {
     }
 
     constructor() public {
-        owner = msg.sender;
+        initialize(msg.sender);
+    }
+
+    function initialize(address _owner) public {
+        require(! _initialized);
+        owner = _owner;
+        _initialized = true;
     }
 
     function getNumberOfCats() public view returns(uint256){
